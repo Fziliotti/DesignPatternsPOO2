@@ -55,7 +55,7 @@
 
 <!-- MENU DO TOPO DA PAGINA -->
   <div class="container ">
-    <h1 class="text-center pt-5">Venda de Produtos</h1>
+    <h1 class="text-center pt-5">Cadastro de Produtos</h1>
     <hr>
     <div id="mensagemView"></div>
 
@@ -107,22 +107,6 @@
           </select>
         </div>
 
-        <div class="form-group col-md-4">
-          <input type="checkbox" id="alca_vermelha" name="subscribe" value="av">
-          <label for="alca_vermelha">Alça Vermelha</label>
-        </div>
-
-         <div class="form-group col-md-4">
-          <input type="checkbox" id="alca_dourada" name="subscribe" value="ad">
-          <label for="alca_dourada">Alça Dourada</label>
-        </div>
-
-         <div class="form-group col-md-4">
-          <input type="checkbox" id="embrulho" name="subscribe" value="em">
-          <label for="embrulho">Embrulho</label>
-        </div>
-
-
 
 
 
@@ -146,11 +130,8 @@
 
       <br><br><br>
 
-  <button type="button" class="btn btn-success text-center float-right" data-toggle="modal" data-target="#exampleModal">
-    Finalizar Venda
-  </button>
-       <button class="btn btn-danger text-center float-left" type="button" onclick="consultaController.apaga()">
-        Cancelar Compra
+       <button class="btn btn-danger text-center float-right" type="button" onclick="consultaController.apaga()">
+        Apagar Estoque
       </button>
       
     </form>
@@ -161,31 +142,6 @@
 
   <!-- RENDERIZAR O TEMPLATE -->
   <div class="container pt-5" id="produtosView"> </div>
-
-  <div class="container pt-5" id="vendasView"> </div>
-  <!-- Button trigger modal -->
-  
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Deseja finalizar a venda?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Voltar à venda</button>
-          <button type="button" class="btn btn-success" onclick="consultaController.finaliza()" data-dismiss="modal">Finalizar</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   
 <!-- 
@@ -207,8 +163,8 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-  <script>
-    var ctx = document.getElementById("myChart").getContext('2d');
+  <!-- <script>
+    var containerx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -245,7 +201,7 @@
             }
         }
     });
-  </script>
+  </script> -->
 <script src="js/app/models/Produto.js" ></script>
 <script src="js/app/models/Caneca.js" ></script>
 <script src="js/app/models/Squeeze.js" ></script>
@@ -253,8 +209,7 @@
 <script src="js/app/models/AlcaDourada.js" ></script>
 <script src="js/app/models/Embrulho.js" ></script>
 <script src="js/app/models/AlcaVermelha.js" ></script>
-<script src="js/app/controllers/VendaController.js"></script>
-<script src="js/app/helpers/DateHelper.js"></script>
+<script src="js/app/controllers/CadastroController.js"></script>
 <script src="js/app/models/ListaProdutos.js" ></script>
 <script src="js/app/views/View.js" ></script>
 <script src="js/app/views/ProdutosView.js" ></script>
@@ -262,13 +217,12 @@
 <script src="js/app/views/MensagemView.js" ></script>
 <script src="js/app/services/ProxyFactory.js" ></script>
 <script src="js/app/helpers/Bind.js"></script>
-<script src="js/app/services/NegociacaoService.js"></script>
-<script src="js/app/services/HttpService.js"></script>
+
 <script src="js/app/services/ConnectionFactory.js"></script>
 <script src="js/app/dao/ProdutoDao.js"></script>
 
   <script>
-    let consultaController = new VendaController();
+    let consultaController = new CadastroController();
   </script>
 
 </body>

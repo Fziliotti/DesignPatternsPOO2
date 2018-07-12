@@ -1,18 +1,18 @@
-class NegociacaoDao {
+class ProdutoDao {
 
 	constructor(connection){
 		this._connection = connection;
-		this._store = 'negociacoes';
+		this._store = 'vendas';
 
 	}
 
-	adiciona(negociacao){
+	adiciona(produto){
 
 		return new Promise((resolve, reject) =>{
 			let request = this._connection
 				.transaction([this._store], 'readwrite')
 				.objectStore(this._store)
-				.add(negociacao);
+				.add(produto);
 
 			request.onsuccess = e =>{
 
@@ -22,7 +22,7 @@ class NegociacaoDao {
 			request.onerror = e =>{
 
 				console.log(e.target.error);
-				reject('Não foi possível adicionar a negociação');
+				reject('Não foi possível adicionar o produto');
 			};
 		});
 	}
@@ -36,26 +36,29 @@ class NegociacaoDao {
                 .objectStore(this._store)
                 .openCursor();
 
-            let negociacoes = [];
+            let produtos = [];
 			cursor.onsuccess = e => {
 			    let atual = e.target.result;
 
 			    if(atual) {
 
 			        let dado = atual.value;
+			        console.log(dado);
 
-			        negociacoes.push(new Negociacao(dado._data, dado._quantidade, dado._valor));
+			        let prdt = new Produto (dado._material, dado._preco_custo, dado._preco_venda, dado._tamanho, dado._cor);
+			        prdt.descricao = dado.descricao
+			        produtos.push(prdt);
 
 			        atual.continue();
 			    } else {
 
-			        resolve(negociacoes);
+			        resolve(produtos);
 			    }
 			}
 			cursor.onerror = e => {
 
 			    console.log(e.target.error);
-			    reject('Não foi possível listar as negociações');
+			    reject('Não foi possível listar os produtos');
 			}
         });
 	}
@@ -68,11 +71,11 @@ class NegociacaoDao {
              .objectStore(this._store)
              .clear();
 
-         request.onsuccess = e => resolve('Negociações apagadas com sucesso');
+         request.onsuccess = e => resolve('Produtos apagados com sucesso');
 
          request.onerror = e => {
              console.log(e.target.error);
-             reject('Não foi possível apagar as negociações');
+             reject('Não foi possível apagar os produtos');
          };
 
      });

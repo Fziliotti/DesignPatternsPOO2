@@ -1,8 +1,8 @@
 
 var ConnectionFactory = (function (){
-	const stores = ['negociacoes'];
-	const version = 4;
-	const dbName = 'aluraframe';
+	const stores = ['vendaAtual', 'vendas'];
+	const version = 3;
+	const dbName = 'dppoo2';
 	var connection = null;
 
 	var close = null;
